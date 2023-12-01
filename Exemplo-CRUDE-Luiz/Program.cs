@@ -6,11 +6,9 @@ using System.Windows.Forms;
 
 namespace Exemplo_CRUDE_Luiz
 {
-    internal static class Program
+    public class Program
     {
-        /// <summary>
-        /// Ponto de entrada principal para o aplicativo.
-        /// </summary>
+        // /// Ponto de entrada principal para o aplicativo.
         [STAThread]
         static void Main()
         {
