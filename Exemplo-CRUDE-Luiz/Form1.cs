@@ -24,11 +24,49 @@ namespace Exemplo_CRUDE_Luiz
             pessoasBLL pessoasBLL = new pessoasBLL();
                 try
             {
+                if (txtNome.Text.Trim() == String.Empty || txtNome.Text.Trim().Length < 3)
+                {
+                    MessageBox.Show("O campo NOME não pode ser vazio!", "Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Information);// apresenta uma tela de informação
+                    txtNome.BackColor = Color.LightYellow;//muda a cor do campo
+                    cbSexo.BackColor = Color.White;
+                    mtbCPF.BackColor = Color.White;
+                }
+                else if (!mtbCPF.MaskCompleted)
+                {
+                    MessageBox.Show("O campo CPF não pode ser vazio!", "Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNome.BackColor = Color.White;
+                    cbSexo.BackColor = Color.White;
+                    mtbCPF.BackColor = Color.LightYellow;
+                }
+                else if (cbSexo.Text == String.Empty)
+                {
+                    MessageBox.Show("O campo SEXO não pode ser vazio!", "Alerta!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    txtNome.BackColor = Color.White;
+                    cbSexo.BackColor = Color.LightYellow;
+                    mtbCPF.BackColor = Color.White;
+                }
+                else
+                {
+                    pessoa.Name = txtNome.Text;
+                    pessoa.Nasc = dtNasc.Text;
+                    pessoa.Sexo = cbSexo.Text;
+                    mtbCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals; // remove as mascaras
+                    pessoa.Cpf = mtbCPF.Text;
+                    mtbCell.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    pessoa.Celular = mtbCell.Text;
+                    pessoa.Endereco = txtEndereco.Text;
+                    pessoa.Bairro = txtBairro.Text;
+                    pessoa.Cidade = txtCidade.Text;
+                    pessoa.Estado = cbEstado.Text;
+                    mtbCEP.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+                    pessoa.Cep = mtbCEP.Text;
 
+                    pessoasBLL.Salvar(pessoa);
+                }
             }
             catch (Exception erro)
             {
-
+                MessageBox.Show("erro ao realizar cadastro!\n"+erro, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Information);// apresenta uma tela de informação
                 throw erro;
             }
                 }
