@@ -62,6 +62,8 @@ namespace Exemplo_CRUDE_Luiz
                     pessoa.Cep = mtbCEP.Text;
 
                     pessoasBLL.Salvar(pessoa);
+                    MessageBox.Show("Cadastro realizado com sucesso!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);// apresenta uma tela de informação
+
                 }
             }
             catch (Exception erro)
