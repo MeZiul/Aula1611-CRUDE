@@ -36,7 +36,6 @@ namespace Exemplo_CRUDE_Luiz.DAL
             }
             catch (Exception erro)
             {
-
                 throw erro;
             }
         }

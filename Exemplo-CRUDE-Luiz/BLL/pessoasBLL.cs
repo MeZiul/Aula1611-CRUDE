@@ -14,11 +14,23 @@ namespace Exemplo_CRUDE_Luiz.BLL
     {
         PessoaDAL pessoaDAL = new PessoaDAL();
 
+        public void Alterar(PessoaModel pessoa)
+        {
+            try
+            {
+                pessoaDAL.Alterar(pessoa);
+            }
+            catch (Exception erro)
+            {
+                throw erro;
+            }
+        }
+
         public void Salvar(PessoaModel pessoa)
         {
             try
             {
-
+                pessoaDAL.Salvar(pessoa);
             }
             catch (Exception erro)
             {

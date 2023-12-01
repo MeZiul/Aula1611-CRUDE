@@ -13,17 +13,50 @@ namespace Exemplo_CRUDE_Luiz.DAL
     {
         MySqlCommand comando = null;
 
+        public void Alterar(PessoaModel pessoa)
+        {
+            try
+            {
+                AbrirConexão();
+                comando = new MySqlCommand("UPDATE pessoa SET nome = @nome, nascimento = @nascimento, sexo = @sexo, cpf = @cpf, celular = @celular, endereco = @endereco," +
+                    " bairro = @bairro, cidade = @cidade, estado = @estado, cep = @cep WHERE id = @id", conexao);
+
+                comando.Parameters.AddWithValue("@id", pessoa.Id);
+                comando.Parameters.AddWithValue("@nome", pessoa.Name);
+                comando.Parameters.AddWithValue("@nascimento", DateTime.Parse(pessoa.Nasc).ToString("yyyy-MM-dd"));
+                comando.Parameters.AddWithValue("@sexo", pessoa.Sexo);
+                comando.Parameters.AddWithValue("@cpf", pessoa.Cpf);
+                comando.Parameters.AddWithValue("@celular", pessoa.Celular);
+                comando.Parameters.AddWithValue("@endereco", pessoa.Endereco);
+                comando.Parameters.AddWithValue("@bairro", pessoa.Bairro);
+                comando.Parameters.AddWithValue("@cidade", pessoa.Cidade);
+                comando.Parameters.AddWithValue("@estado", pessoa.Estado);
+                comando.Parameters.AddWithValue("@cep", pessoa.Cep);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception erro)
+            {
+
+                throw erro;
+            }
+            finally
+            {
+                EncerrarConexão();
+            }
+        }
+
         //método para salvar
         public void Salvar( PessoaModel pessoa)
         {
             try
             {
                 AbrirConexão();
-                comando = new MySqlCommand("INSER INTO pessoa(nome, nascimento, sexo, cpf, celular ,endereco, bairro, cidade, estado, cep) " +
-                "VALUES (@nome,  @nascimento, @sexo, @cpf, @celular, @endereco, @bairro, @cidade, @estado, @cep)", conexao);
+                comando = new MySqlCommand("INSERT INTO pessoa(nome, nascimento, sexo, cpf, celular ,endereco, bairro, cidade, estado, cep) " +
+                "VALUES (@nome, @nascimento, @sexo, @cpf, @celular, @endereco, @bairro, @cidade, @estado, @cep)", conexao);
 
                 comando.Parameters.AddWithValue("@nome",     pessoa.Name);
-                comando.Parameters.AddWithValue("@Nascimento", DateTime.Parse(pessoa.Nasc).ToString("yyyy-MM-dd"));
+                comando.Parameters.AddWithValue("@nascimento", DateTime.Parse(pessoa.Nasc).ToString("yyyy-MM-dd"));
                 comando.Parameters.AddWithValue("@sexo",     pessoa.Sexo);
                 comando.Parameters.AddWithValue("@cpf",      pessoa.Cpf);
                 comando.Parameters.AddWithValue("@celular",  pessoa.Celular);

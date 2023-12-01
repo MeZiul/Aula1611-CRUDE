@@ -317,6 +317,8 @@
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(598, 221);
             this.dataGridView.TabIndex = 16;
+            this.dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView_CellContentClick);
+            this.dataGridView.DoubleClick += new System.EventHandler(this.dataGridView_DoubleClick);
             // 
             // btnExcluir
             // 
@@ -348,6 +350,7 @@
             this.btnAlterar.TabIndex = 14;
             this.btnAlterar.Text = "Alterar";
             this.btnAlterar.UseVisualStyleBackColor = true;
+            this.btnAlterar.Click += new System.EventHandler(this.btnAlterar_Click);
             // 
             // btnExibir
             // 
@@ -369,6 +372,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // label12
             // 
