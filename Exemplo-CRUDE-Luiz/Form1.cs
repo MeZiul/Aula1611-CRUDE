@@ -36,6 +36,36 @@ namespace Exemplo_CRUDE_Luiz
             cbSexo.BackColor = Color.White;
 
         }
+        //Metodo para excluir
+        public void Excluir(PessoaModel pessoa)
+        {
+            pessoasBLL pessoasBLL = new pessoasBLL();
+            try
+            {
+                if(txtCodigo.Text == String.Empty)
+                {
+                    MessageBox.Show("Selecione um cadastro a ser exluido!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if(MessageBox.Show("Deseja excluir o cadastro selecionado?", "Alerta", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1) == DialogResult.Yes)
+                {
+                    pessoa.Id = Convert.ToInt32(txtCodigo.Text);
+                    pessoasBLL.Excluir(pessoa);
+
+                    MessageBox.Show("Cadasro exluido com sucesso!", "Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    Limpar();
+                }
+            }
+            catch (Exception erro)
+            {
+                MessageBox.Show("Erro ao excluir os dados!\n" + erro, "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw erro;
+            }
+        }
+
+
+
+
+
         //Método para Editar
         public void Alterar(PessoaModel pessoa)
         {
@@ -237,6 +267,12 @@ namespace Exemplo_CRUDE_Luiz
             txtCidade.Text = dataGridView.CurrentRow.Cells[8].Value.ToString();
             cbEstado.Text = dataGridView.CurrentRow.Cells[9].Value.ToString();
             mtbCEP.Text = dataGridView.CurrentRow.Cells[10].Value.ToString();
+        }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            PessoaModel pessoa = new PessoaModel();
+            Excluir(pessoa);
         }
     }
 }

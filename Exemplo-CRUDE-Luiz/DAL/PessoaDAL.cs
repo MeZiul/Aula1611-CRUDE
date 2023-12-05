@@ -45,6 +45,24 @@ namespace Exemplo_CRUDE_Luiz.DAL
                 EncerrarConexão();
             }
         }
+        //Exluir 
+        public void Excluir( PessoaModel pessoa)
+        {
+            try
+            {
+                AbrirConexão();
+                comando = new MySqlCommand("DELETE FROM pessoa WHERE id = @id", conexao);
+                comando.Parameters.AddWithValue("@id",pessoa.Id);
+
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception erro)
+            {
+
+                throw erro;
+            }
+            finally { EncerrarConexão(); }
+        }
 
         //método para salvar
         public void Salvar( PessoaModel pessoa)

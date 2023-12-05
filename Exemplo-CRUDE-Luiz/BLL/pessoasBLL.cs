@@ -25,6 +25,18 @@ namespace Exemplo_CRUDE_Luiz.BLL
                 throw erro;
             }
         }
+        public void Excluir(PessoaModel pessoa)
+        {
+            try
+            {
+                pessoaDAL.Excluir(pessoa);
+            }
+            catch (Exception erro)
+            {
+
+                throw erro;
+            }
+        }
 
         public void Salvar(PessoaModel pessoa)
         {
